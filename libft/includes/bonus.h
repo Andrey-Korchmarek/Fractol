@@ -13,11 +13,16 @@
 #ifndef FDF_BONUS_H
 # define FDF_BONUS_H
 
-# include "libft.h"
-# include "get_next_line.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+# include <string.h>
+# include <fcntl.h>
+# include <stdio.h>
+
+# include "libft.h"
+# include "get_next_line.h"
+# include "tmp.h"
 
 # define SHRINKER ( 1.247 )
 

@@ -15,14 +15,9 @@
 # define INTMIN -2147483648
 # define SIZE_TMAX 18446744073709551615ULL
 
-# include <string.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <limits.h>
-# include <stdio.h>
-# include <fcntl.h>
 # include "get_next_line.h"
 # include "bonus.h"
+# include "tmp.h"
 
 typedef struct		s_list
 {

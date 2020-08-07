@@ -18,5 +18,6 @@
 # include "bonus.h"
 
 int	ft_main(void);
+int	ft_range_stop(int count, int stop);
 
 #endif
