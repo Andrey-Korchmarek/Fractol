@@ -16,8 +16,6 @@
 # define MAX_FD 12000
 
 # include "libft.h"
-# include "bonus.h"
-# include "tmp.h"
 
 int		get_next_line(const int fd, char **line);
 int		ft_wdcounter(char const *str, char c);

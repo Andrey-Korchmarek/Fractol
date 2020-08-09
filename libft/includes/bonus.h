@@ -21,8 +21,6 @@
 # include <stdio.h>
 
 # include "libft.h"
-# include "get_next_line.h"
-# include "tmp.h"
 
 # define SHRINKER ( 1.247 )
 

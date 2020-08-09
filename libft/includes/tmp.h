@@ -14,8 +14,6 @@
 # define FDF_TMP_H
 
 # include "libft.h"
-# include "get_next_line.h"
-# include "bonus.h"
 
 int	ft_main(void);
 int	ft_range_stop(int count, int stop);
