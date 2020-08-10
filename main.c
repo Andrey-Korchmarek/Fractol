@@ -26,7 +26,6 @@ t_complex pix_to_coord(t_pixel pix, t_tmp *data)
 	coord.r = (pix.x - WIDTH / 2) / data->scale;
 	coord.i = (pix.y - HEIGHT / 2) / data->scale;
 	return (coord);
-
 }
 
 void set_default(t_tmp *data)
@@ -59,7 +58,7 @@ int main(void)
 		pix.x = 0;
 		while (pix.x < WIDTH)
 		{
-			pix.color = mandelbrot2(pix_to_coord(pix, data), data->max_iteration);
+			pix.color = iteration(pix_to_coord(pix, data), m_next, m_check);
 			my_mlx_pixel_put(&img, pix.x, pix.y, pix.color);
 			pix.x++;
 		}
