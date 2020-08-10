@@ -24,3 +24,8 @@ t_complex	cx_sum(t_complex c1, t_complex c2)
 	result.i = c1.i + c2.i;
 	return (result);
 }
+
+t_complex		cx_new(double re, double im)
+{
+	return ((t_complex){re, im});
+}

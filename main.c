@@ -11,7 +11,7 @@ int	ft_close(int keycode, t_vars *vars)
 	return (0);
 }
 
-void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void            my_mlx_pixel_put(t_image *data, int x, int y, int color)
 {
 	char    *dst;
 
@@ -22,8 +22,11 @@ void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
 t_complex pix_to_coord(t_pixel pix)
 {
 	t_complex coord;
-	t_complex f = {(2.0 + 2.0) / (400 - 1), (2.0 + 2.0) / (400 - 1)};
+	t_complex f;
+	t_complex min;
+	t_complex max;
 
+	f = cx_new((max.r - min.r) / (WIDTH - 1), (max.i - min.i) / (HEIGHT - 1));
 	coord.r = - 2 + pix.x * f.r;
 	coord.i = 2 - pix.y * f.i;
 	return (coord);
@@ -33,7 +36,7 @@ t_complex pix_to_coord(t_pixel pix)
 int main(void)
 {
 	t_vars	vars;
-	t_data	img;
+	t_image	img;
 	t_pixel pix;
 
 	vars.mlx = mlx_init();
@@ -48,7 +51,7 @@ int main(void)
 		pix.x = 0;
 		while (pix.x < WIDTH)
 		{
-			pix.color = mandelbrot2(pix_to_coord(pix), 10);
+			pix.color = mandelbrot2(pix_to_coord(pix), 1000);
 			my_mlx_pixel_put(&img, pix.x, pix.y, pix.color);
 			pix.x++;
 		}
