@@ -27,6 +27,7 @@ typedef struct		s_list
 }					t_list;
 
 int					ft_abs(int n);
+double				ft_abs_f(double n);
 int					ft_atoi(const char *str);
 long long int		ft_atoll(const char *str);
 void				ft_bzero(void *b, size_t n);

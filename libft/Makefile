@@ -14,7 +14,7 @@ NAME = libft.a
 SOURCES = ./
 INCLUDES = -L $(addprefix ./includes/, $(HEAD))
 CC = gcc -Wall -Wextra -Werror
-RM = /bin/rm -f
+RM = /bin/rm -rf
 
 HEAD := libft.h get_next_line.h bonus.h tmp.h
 ARR := ft_range.c ft_free_array.c ft_free_matrix.c

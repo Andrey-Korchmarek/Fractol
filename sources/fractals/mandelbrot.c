@@ -1,28 +1,28 @@
 #include "../../includes/fractol.h"
 
-int	mandelbrot(t_point point, t_data *data)
+int	mandelbrot(t_member z)
 {
-	int			i;
-	double		za;
-	double		zb;
-	double		tmp;
-	t_complex	c;
+	if (ft_abs_f(z.z.r * z.z.r + z.z.i * z.z.i) > 4)
+		return (z.n);
+	return (0xFFFFFF);
+}
 
-	(void)data;
-	za = 0;
-	zb = 0;
+int	mandelbrot2(t_complex c, int maxn)
+{
+	t_member *z;
+	int i;
+
+	if (!(z = (t_member*)malloc(sizeof(t_member) * maxn)))
+		game_over(0);
+	z[0].n = 0;
+	z[0].z.r = 0;
+	z[0].z.i = 0;
 	i = 0;
-	while (za * za + zb * zb <= 4 && i < point.n)
+	while (i < maxn && mandelbrot(z[i]) == 0xFFFFFF)
 	{
-		tmp = za;
-		za = tmp * tmp - zb * zb + point.ca;
-		zb = 2 * tmp * zb + point.cb;
 		i++;
+		z[i].n = i;
+		z[i].z = cx_sum(cx_square(z[i - 1].z), c);
 	}
-	c.r = za;
-	c.i = zb;
-	if (i == point.n)
-		return (0);
-	else
-		return ((unsigned int)i);
+	return ((i == maxn) ? 0xFFFFFF : i);
 }

@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 #include <math.h>
+#include "libft/includes/libft.h"
 #include "../minilibx_macos/mlx.h"
 
 # define ESC	53
@@ -42,15 +43,39 @@ typedef	struct	s_point
 	double		cb;
 }				t_point;
 
+typedef	struct	s_pixel
+{
+	int	x;
+	int	y;
+	int	color;
+}				t_pixel;
+
 typedef struct			s_complex
 {
 	double		r;
 	double		i;
 }						t_complex;
 
+typedef struct			s_member
+{
+	t_complex		z;
+	int				n;
+}						t_member;
+
+typedef	struct	s_sequence
+{
+	t_complex		z0;
+	int				maxn;
+	t_complex		c;
+}				t_sequence;
+
 int				main(void);
-int				mandelbrot(t_point point, t_data *data);
-int				close(int keycode, t_vars *vars);
+void	game_over(int error);
+int				mandelbrot(t_member z);
+int				mandelbrot2(t_complex c, int maxn);
+int				ft_close(int keycode, t_vars *vars);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
+t_complex		cx_square(t_complex c);
+t_complex		cx_sum(t_complex c1, t_complex c2);
 
 #endif
