@@ -35,6 +35,7 @@ void set_default(t_tmp *data)
 	data->max = cx_new(2, 2);
 	data->pixzoom = 200;
 	data->scale = 150;
+	data->max_iteration = 100;
 //	int 			mouse_x;
 //	int 			mouse_y;
 }
@@ -58,7 +59,7 @@ int main(void)
 		pix.x = 0;
 		while (pix.x < WIDTH)
 		{
-			pix.color = mandelbrot2(pix_to_coord(pix, data), 100);
+			pix.color = mandelbrot2(pix_to_coord(pix, data), data->max_iteration);
 			my_mlx_pixel_put(&img, pix.x, pix.y, pix.color);
 			pix.x++;
 		}

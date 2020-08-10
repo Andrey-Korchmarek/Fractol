@@ -90,7 +90,7 @@ typedef	struct	s_tmp
 
 int				main(void);
 void			game_over(int error);
-int				mandelbrot(t_member z);
+int				m_check(t_member z);
 int				mandelbrot2(t_complex c, int maxn);
 int				ft_close(int keycode, t_vars *vars);
 void			my_mlx_pixel_put(t_image *data, int x, int y, int color);
