@@ -36,13 +36,6 @@ typedef	struct	s_image
 	int			endian;
 }				t_image;
 
-typedef	struct	s_point
-{
-	int			n;
-	double		ca;
-	double		cb;
-}				t_point;
-
 typedef	struct	s_pixel
 {
 	int	x;
@@ -69,14 +62,42 @@ typedef	struct	s_sequence
 	t_complex		c;
 }				t_sequence;
 
+typedef	struct	s_tmp
+{
+	int				x;
+	int				y;
+	int				e;
+	int				b;
+	double			off_x;
+	double			off_y;
+	int				fract;
+	void			*mlx;
+	void			*win;
+	t_image			*img;
+	int				max_iteration;
+	t_complex		min;
+	t_complex		max;
+	t_complex		c;
+	t_complex		k;
+	int				color_shift;
+	double			zoom;
+	int				jul_m;
+	int				help;
+	int 			pixzoom;
+	int 			mouse_x;
+	int 			mouse_y;
+}				t_tmp;
+
 int				main(void);
 void			game_over(int error);
 int				mandelbrot(t_member z);
 int				mandelbrot2(t_complex c, int maxn);
 int				ft_close(int keycode, t_vars *vars);
 void			my_mlx_pixel_put(t_image *data, int x, int y, int color);
+t_complex		pix_to_coord(t_pixel pix, t_tmp *data);
 t_complex		cx_square(t_complex c);
 t_complex		cx_sum(t_complex c1, t_complex c2);
 t_complex		cx_new(double re, double im);
+void			set_default(t_tmp *data);
 
 #endif
