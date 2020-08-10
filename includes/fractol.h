@@ -80,7 +80,7 @@ typedef	struct	s_tmp
 	t_complex		c;
 	t_complex		k;
 	int				color_shift;
-	double			zoom;
+	double			scale;
 	int				jul_m;
 	int				help;
 	int 			pixzoom;
