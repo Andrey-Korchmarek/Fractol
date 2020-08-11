@@ -1,73 +1,52 @@
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mashley <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/11 05:56:02 by mashley           #+#    #+#             */
+/*   Updated: 2020/08/11 05:56:07 by mashley          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/fractol.h"
 
-int	ft_close(int keycode, t_vars *vars)
+void set_default(t_fr *data)
 {
-	if (keycode == ESC)
-	{
-		mlx_destroy_window(vars->mlx, vars->win);
-		exit(0);
-	}
-	return (0);
+	data->width = 800;
+	data->height = 800;
+	data->scale = 350;
+	data->mlx = mlx_init();
+	data->win =\
+		mlx_new_window(data->mlx, data->width, data->height, "Fractol");
 }
 
-void            my_mlx_pixel_put(t_image *data, int x, int y, int color)
+int	main(void)
 {
-	char    *dst;
+	t_fr	*data;
+	t_image *img;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
-t_complex pix_to_coord(t_pixel pix, t_tmp *data)
-{
-	t_complex coord;
-
-	coord.r = (pix.x - WIDTH / 2) / data->scale;
-	coord.i = (pix.y - HEIGHT / 2) / data->scale;
-	return (coord);
-}
-
-void set_default(t_tmp *data)
-{
-	data->min = cx_new(-2, -2);
-	data->max = cx_new(2, 2);
-	data->pixzoom = 200;
-	data->scale = 150;
-	data->max_iteration = 100;
-//	int 			mouse_x;
-//	int 			mouse_y;
-}
-
-int main(void)
-{
-	t_vars	vars;
-	t_image	img;
-	t_pixel pix;
-	t_tmp 	*data;
-
-	data = (t_tmp*)malloc(sizeof(t_tmp));
+	if (!(data = (t_fr*)malloc(sizeof(t_fr))))
+		return (0);
+//	if (argc == 2)
+//		data->choice = argv[1][1];
 	set_default(data);
-	vars.mlx = mlx_init();
-	img.img = mlx_new_image(vars.mlx, WIDTH, WIDTH);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-								 &img.endian);
-	pix.y = 0;
-	while (pix.y < HEIGHT)
-	{
-		pix.x = 0;
-		while (pix.x < WIDTH)
-		{
-			pix.color = iteration(pix_to_coord(pix, data), m_next, m_check);
-			my_mlx_pixel_put(&img, pix.x, pix.y, pix.color);
-			pix.x++;
-		}
-		pix.y++;
-	}
-
-	vars.win = mlx_new_window(vars.mlx, WIDTH, WIDTH, "Hello world!");
-	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
-	mlx_key_hook(vars.win, ft_close, &vars);
-	mlx_loop(vars.mlx);
+	if (!(img = (t_image*)malloc(sizeof(t_image))))
+		return (0);
+	img->img = mlx_new_image(data->mlx, data->width, data->height);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+			&img->line_length, &img->endian);
+	t_xyab *len = (t_xyab*)malloc(sizeof(t_xyab));
+	len-> x = data->width/2;
+	len-> y = data->height/2;
+	len-> a = 0;
+	len-> b = 0;
+	len-> l = data->height/4;
+	data->len = len;
+	img_pixel_full(img, data, len);
+	data->image = img;
+	mlx_key_hook(data->win, ft_close, data);
+	mlx_loop(data->mlx);
 	return (0);
 }

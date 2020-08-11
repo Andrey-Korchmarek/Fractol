@@ -22,11 +22,13 @@
 # define WIDTH 800
 # define HEIGHT 800
 
+//Переименовать
 typedef struct  s_vars {
 	void        *mlx;
 	void        *win;
 }               t_vars;
 
+//Нужна
 typedef	struct	s_image
 {
 	void		*img;
@@ -36,6 +38,7 @@ typedef	struct	s_image
 	int			endian;
 }				t_image;
 
+//Нужна
 typedef	struct	s_pixel
 {
 	int	x;
@@ -43,25 +46,32 @@ typedef	struct	s_pixel
 	int	color;
 }				t_pixel;
 
-typedef struct			s_complex
+//Нужна
+typedef struct			s_cx
 {
 	double		r;
 	double		i;
-}						t_complex;
+}						t_cx;
 
+//Мне нравится
 typedef struct			s_member
 {
-	t_complex		z;
+	t_cx		z;
 	int				n;
 }						t_member;
 
+//Нужна
 typedef	struct	s_sequence
 {
-	t_complex		z0;
-	int				maxn;
-	t_complex		c;
+	t_cx		z0;
+	int			maxn;
+	t_cx		c;
+	t_cx 		k;
 }				t_sequence;
 
+
+
+//Только на время
 typedef	struct	s_tmp
 {
 	int				x;
@@ -75,10 +85,10 @@ typedef	struct	s_tmp
 	void			*win;
 	t_image			*img;
 	int				max_iteration;
-	t_complex		min;
-	t_complex		max;
-	t_complex		c;
-	t_complex		k;
+	t_cx		min;
+	t_cx		max;
+	t_cx		c;
+	t_cx		k;
 	int				color_shift;
 	double			scale;
 	int				jul_m;
@@ -88,20 +98,64 @@ typedef	struct	s_tmp
 	int 			mouse_y;
 }				t_tmp;
 
-int				main(void);
+typedef struct s_algoritm
+{
+	t_pixel		*pix;
+	t_cx		*c;
+	t_cx		k;
+	char		fractal;
+	int			maxiter;
+	int			*color;
+	int			one;
+}				t_algoritm;
+
+typedef struct s_render
+{
+	void			*mlx;
+	void			*win;
+	t_image			*img;
+
+}t_render;
+
+typedef struct s_xyab
+{
+	int x;
+	int y;
+	double a;
+	double b;
+	int l;
+}t_xyab;
+
+//Самая главная
+typedef	struct	s_fr
+{
+	char		choice;
+	int			width;
+	int			height;
+	t_image		*image;
+	void		*mlx;
+	void		*win;
+	t_pixel		*pix;
+	t_algoritm	*alg;
+	double		scale;
+	t_xyab		*len;
+}				t_fr;
+
+//int				fr_main(void);
 void			game_over(int error);
 
-int				mandelbrot2(t_complex c, int maxn);
-int				ft_close(int keycode, t_vars *vars);
-void			my_mlx_pixel_put(t_image *data, int x, int y, int color);
-t_complex		pix_to_coord(t_pixel pix, t_tmp *data);
-t_complex		cx_square(t_complex c);
-t_complex		cx_sum(t_complex c1, t_complex c2);
-t_complex		cx_new(double re, double im);
-void			set_default(t_tmp *data);
-
-int iteration(t_complex c, t_complex (*next)(t_complex, t_complex), int (*check)(t_member*));
-t_complex m_next(t_complex z, t_complex c);
+int				mandelbrot2(t_cx c, int maxn);
+int				ft_close(int keycode, t_fr *data);
+void	img_pixel_put(t_image *data, t_pixel *pix);
+t_cx		pix_to_coord(t_pixel pix, t_fr *data);
+t_cx		cx_square(t_cx c);
+t_cx		cx_sum(t_cx c1, t_cx c2);
+t_cx		cx_new(double re, double im);
+void		set_default(t_fr *data);
+int iteration(t_cx c, t_cx (*next)(t_cx, t_cx), int (*check)(t_member*));
+t_cx m_next(t_cx z, t_cx c);
 int				m_check(t_member *z);
+t_cx j_new(t_cx k, t_cx c, int n);
+void	img_pixel_full(t_image *img, t_fr *data, t_xyab *len);
 
 #endif

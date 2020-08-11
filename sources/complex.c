@@ -4,7 +4,7 @@
 
 #include "includes/fractol.h"
 
-t_complex	cx_square(t_complex c)
+t_cx	cx_square(t_cx c)
 {
 	double a;
 	double b;
@@ -16,16 +16,16 @@ t_complex	cx_square(t_complex c)
 	return (c);
 }
 
-t_complex	cx_sum(t_complex c1, t_complex c2)
+t_cx	cx_sum(t_cx c1, t_cx c2)
 {
-	t_complex result;
+	t_cx result;
 
 	result.r = c1.r + c2.r;
 	result.i = c1.i + c2.i;
 	return (result);
 }
 
-t_complex		cx_new(double re, double im)
+t_cx		cx_new(double re, double im)
 {
-	return ((t_complex){re, im});
+	return ((t_cx){re, im});
 }
