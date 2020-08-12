@@ -1,21 +1,30 @@
-//
-// Created by Mari Ashley on 8/11/20.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mashley <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/12 13:14:17 by mashley           #+#    #+#             */
+/*   Updated: 2020/08/12 13:14:21 by mashley          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "includes/fractol.h"
 
 void	img_pixel_put(t_image *data, t_pixel *pix)
 {
-	char    *dst;
+	char	*dst;
 
-	dst = data->addr + (pix->y * data->line_length + pix->x * (data->bits_per_pixel / 8));
+	dst = data->addr + (pix->y * data->llh + pix->x * (data->bpp / 8));
 	*(unsigned int*)dst = pix->color;
+
 }
 
 void	img_pixel_full(t_image *img, t_fr *data)
 {
 	t_pixel pix;
-//	t_cx coord;
+	t_cx coord;
 
 
 	pix.y = 0;
@@ -24,11 +33,24 @@ void	img_pixel_full(t_image *img, t_fr *data)
 		pix.x = 0;
 		while (pix.x < data->width)
 		{
-			pix.color = iteration(pix_to_coord(pix, data), m_next, m_check);
+			//t_alg mand = {'m', 0, pix_to_coord(pix, data), (t_cx){1, 1}, (t_cx){0, 0}, 40404, m_next, m_check};
+			coord = pix_to_coord(&pix, data->edge, data);
+			pix.color = 0xFF0055;
 			img_pixel_put(img, &pix);
-
 			pix.x++;
 		}
 		pix.y++;
 	}
+
+}
+
+void	draw(t_fr *data)
+{
+	t_image	img;
+
+	img.img = mlx_new_image(data->mlx, data->width, data->height);
+	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.llh, &img.endian);
+	img_pixel_full(&img, data);
+	mlx_put_image_to_window(data->mlx, data->win, img.img, 0, 0);
+	return;
 }

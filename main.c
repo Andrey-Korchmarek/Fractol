@@ -5,52 +5,44 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mashley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/11 05:56:02 by mashley           #+#    #+#             */
-/*   Updated: 2020/08/11 05:56:07 by mashley          ###   ########.fr       */
+/*   Created: 2020/08/12 09:32:15 by mashley           #+#    #+#             */
+/*   Updated: 2020/08/12 09:32:18 by mashley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fractol.h"
 
-void set_default(t_fr *data)
+void	set_default(t_fr *data)
 {
-	data->width = 800;
-	data->height = 800;
-	data->scale = 350;
-	data->maxiter = 404;
-	data->edge = &(t_edge){-2, 2, -2, 2};
-	data->edge->minre = (data->width * ((data->edge->maxim - data->edge->minim) / data->height)) + data->edge->minre;
+	t_edge ed;
 
+	data->width = 1000;
+	data->height = 800;
+	data->zoom = 1.1;
 	data->mlx = mlx_init();
 	data->win =\
 		mlx_new_window(data->mlx, data->width, data->height, "Fractol");
+	ed = (t_edge){-2, 2, -2, 2};
+	ed.maxre = (ed.maxim - ed.minim) * data->width / data->height + ed.minre;
+	data->edge = &ed;
+
+	return ;
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	t_fr	*data;
-	t_image *img;
+	t_fr	*main;
 
-	if (!(data = (t_fr*)malloc(sizeof(t_fr))))
-		return (0);
-//	if (argc == 2)
-//		data->choice = argv[1][1];
-	set_default(data);
-	if (!(img = (t_image*)malloc(sizeof(t_image))))
-		return (0);
-	img->img = mlx_new_image(data->mlx, data->width, data->height);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
-			&img->line_length, &img->endian);
-//	t_xyab *len = (t_xyab*)malloc(sizeof(t_xyab));
-//	len-> x = data->width/2;
-//	len-> y = data->height/2;
-//	len-> a = 0;
-//	len-> b = 0;
-//	len-> l = data->height/4;
-//	data->len = len;
-	img_pixel_full(img, data);
-	data->image = img;
-	mlx_key_hook(data->win, ft_close, data);
-	mlx_loop(data->mlx);
+	main = (t_fr*)malloc(sizeof(t_fr));
+	if (argc != 2)
+		game_over(1);
+	if (argc == 2)
+		main->choice = argv[1][1];
+	set_default(main);
+	draw(main);
+
+	mlx_key_hook(main->win, ft_close, main);
+	mlx_loop(main->mlx);
+	free(main);
 	return (0);
 }

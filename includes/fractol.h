@@ -5,40 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mashley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/09 17:30:52 by mashley           #+#    #+#             */
-/*   Updated: 2020/08/09 17:30:55 by mashley          ###   ########.fr       */
+/*   Created: 2020/08/12 09:31:58 by mashley           #+#    #+#             */
+/*   Updated: 2020/08/12 09:32:02 by mashley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_FRACTOL_H
-# define FRACTOL_FRACTOL_H
+#ifndef FRACTOL_H
+# define FRACTOL_H
 
 # include <stdio.h>
-#include <math.h>
-#include "libft/includes/libft.h"
-#include "../minilibx_macos/mlx.h"
+# include <math.h>
+# include "libft/includes/libft.h"
+# include "../minilibx_macos/mlx.h"
 
 # define ESC	53
-# define WIDTH 800
-# define HEIGHT 800
 
-//Переименовать
-typedef struct  s_vars {
-	void        *mlx;
-	void        *win;
-}               t_vars;
-
-//Нужна
 typedef	struct	s_image
 {
 	void		*img;
 	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
+	int			bpp;
+	int			llh;
 	int			endian;
 }				t_image;
 
-//Нужна
 typedef	struct	s_pixel
 {
 	int	x;
@@ -46,85 +36,11 @@ typedef	struct	s_pixel
 	int	color;
 }				t_pixel;
 
-//Нужна
 typedef struct			s_cx
 {
 	double		r;
 	double		i;
 }						t_cx;
-
-//Мне нравится
-typedef struct			s_member
-{
-	t_cx		z;
-	int				n;
-}						t_member;
-
-//Нужна
-typedef	struct	s_sequence
-{
-	t_cx		z0;
-	int			maxn;
-	t_cx		c;
-	t_cx 		k;
-}				t_sequence;
-
-
-
-//Только на время
-typedef	struct	s_tmp
-{
-	int				x;
-	int				y;
-	int				e;
-	int				b;
-	double			off_x;
-	double			off_y;
-	int				fract;
-	void			*mlx;
-	void			*win;
-	t_image			*img;
-	int				max_iteration;
-	t_cx		min;
-	t_cx		max;
-	t_cx		c;
-	t_cx		k;
-	int				color_shift;
-	double			scale;
-	int				jul_m;
-	int				help;
-	int 			pixzoom;
-	int 			mouse_x;
-	int 			mouse_y;
-}				t_tmp;
-
-typedef struct s_algoritm
-{
-	t_pixel		*pix;
-	t_cx		*c;
-	t_cx		k;
-	char		fractal;
-	int			maxiter;
-	int			*color;
-	int			one;
-}				t_algoritm;
-
-typedef struct s_render
-{
-	void			*mlx;
-	void			*win;
-	t_image			*img;
-
-}t_render;
-
-typedef struct s_xyab
-{
-	int x;
-	int y;
-	double a;
-	double b;
-	int l;
-}t_xyab;
 
 typedef	struct	s_edge
 {
@@ -134,40 +50,27 @@ typedef	struct	s_edge
 	double	maxre;
 }				t_edge;
 
-//Самая главная
 typedef	struct	s_fr
 {
-	char		choice;
-	int			width;
-	int			height;
-	int			maxiter;
-	t_pixel		*pix;
-	t_cx		*com;
-	t_image		*image;
-	t_algoritm	*alg;
-	double		scale;
-	t_xyab		*len;
-	t_edge		*edge;
+	char	choice;
+	int		width;
+	int		height;
+//	double	zoom;
+	t_edge	*edge;
 
-	void		*mlx;
-	void		*win;
+	void	*mlx;
+	void	*win;
 }				t_fr;
 
-//int				fr_main(void);
-void			game_over(int error);
-
-int				mandelbrot2(t_cx c, int maxn);
-int				ft_close(int keycode, t_fr *data);
+void	game_over(int error);
+int		ft_close(int keycode, t_fr *data);
+void	draw(t_fr *data);
 void	img_pixel_put(t_image *data, t_pixel *pix);
-t_cx		pix_to_coord(t_pixel pix, t_fr *data);
-t_cx		cx_square(t_cx c);
-t_cx		cx_sum(t_cx c1, t_cx c2);
-t_cx		cx_new(double re, double im);
-void		set_default(t_fr *data);
-int iteration(t_cx c, t_cx (*next)(t_cx, t_cx), int (*check)(t_member*));
-t_cx m_next(t_cx z, t_cx c);
-int				m_check(t_member *z);
-t_cx j_new(t_cx k, t_cx c, int n);
-void	img_pixel_full(t_image *img, t_fr *data);
+t_cx	cx_square(t_cx c);
+t_cx	cx_sum(t_cx c1, t_cx c2);
+t_cx	cx_new(double re, double im);
+t_cx	pix_to_coord(t_pixel *pix, t_edge *edge, t_fr *data);
+double	interpolate(double start, double end, double paste);
+void	zoom(double zoom, t_cx coord, t_edge *ed, t_fr *data);
 
 #endif

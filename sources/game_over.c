@@ -17,7 +17,9 @@ void	game_over(int error)
 	if (error == 0)
 		ft_putstr("Error!!\n");
 	else if (error == 1)
-		ft_putstr("I need exactly one argument.\n");
+		ft_putstr("usage: fractol  -j for Julia\n"
+				  "\t\t\t\t-m for Mandelbrot\n"
+				  "\t\t\t\t-b for Burningship\n");
 	else if (error == 2)
 		ft_putstr("I cannot read this file.\n");
 	else if (error == 3)

@@ -11,9 +11,12 @@ find_library(APPKIT AppKit)
 include_directories(.)
 include_directories(libft)
 include_directories(minilibx_macos)
+include_directories(includes)
+include_directories(sources)
 FILE(GLOB SOURCES *.c sources/*.c sources/*/*.c)
+FILE(GLOB INCLUDES includes/*.h)
 
-add_executable(Fractol ${SOURCES} includes/fractol.h )
+add_executable(Fractol ${SOURCES} ${INCLUDES})
 
 add_subdirectory(libft)
 target_link_libraries(Fractol lib)

@@ -13,7 +13,7 @@ include_directories(libft)
 include_directories(minilibx_macos)
 FILE(GLOB SOURCES *.c srcs/*.c)
 
-add_executable(Fractol ${SOURCES} fdf.h )
+add_executable(Fractol ${SOURCES} includes/*.h )
 
 add_subdirectory(libft)
 target_link_libraries(Fractol lib)
