@@ -55,7 +55,7 @@ typedef	struct	s_fr
 	char	choice;
 	int		width;
 	int		height;
-//	double	zoom;
+	double	zoom;
 	t_edge	*edge;
 
 	void	*mlx;
@@ -71,6 +71,6 @@ t_cx	cx_sum(t_cx c1, t_cx c2);
 t_cx	cx_new(double re, double im);
 t_cx	pix_to_coord(t_pixel *pix, t_edge *edge, t_fr *data);
 double	interpolate(double start, double end, double paste);
-void	zoom(double zoom, t_cx coord, t_edge *ed, t_fr *data);
+void	zoom(double zoom, t_cx coord, t_edge *ed);
 
 #endif

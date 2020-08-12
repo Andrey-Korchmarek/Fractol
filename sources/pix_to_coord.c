@@ -29,13 +29,10 @@ double	interpolate(double start, double end, double paste)
 	return (start + ((end - start) * paste));
 }
 
-void zoom(double zoom, t_cx coord, t_edge *ed, t_fr *data)
+void zoom(double zoom, t_cx coord, t_edge *ed)
 {
-	double paste;
-
-	paste = 1.0 / zoom;
-	ed->minre = interpolate(coord.r, ed->minre, paste);
-	ed->minim = interpolate(coord.i, ed->minim , paste);
-	ed->maxre = interpolate(coord.r, ed->maxre, paste);
-	ed->maxim = interpolate(coord.i, ed->maxim, paste);
+	ed->minre = interpolate(coord.r, ed->minre, zoom);
+	ed->minim = interpolate(coord.i, ed->minim , zoom);
+	ed->maxre = interpolate(coord.r, ed->maxre, zoom);
+	ed->maxim = interpolate(coord.i, ed->maxim, zoom);
 }

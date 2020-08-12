@@ -24,15 +24,16 @@ int	ft_close(int keycode, t_fr *data)
 
 int		mouse_h(int button, int x, int y, t_fr *data)
 {
-	(void)x;
-	(void)y;
-	if (button == 4 || button == 5)
-	{
+	t_cx coord;
+
+	coord = pix_to_coord(&(t_pixel) {x, y, 0}, data->edge, data);
+	if (button == 4 || button == 5) {
 		if (button == 4)
-			data->zoom -= 1;
+			zoom(data->zoom, coord, data->edge);
 		if (button == 5)
-			data->zoom += 1;
+			zoom(1.0 / data->zoom, coord, data->edge);
 	}
 	mlx_clear_window(data->mlx, data->win);
 	draw(data);
 	return (0);
+}
