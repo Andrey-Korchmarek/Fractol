@@ -17,6 +17,10 @@ void set_default(t_fr *data)
 	data->width = 800;
 	data->height = 800;
 	data->scale = 350;
+	data->maxiter = 404;
+	data->edge = &(t_edge){-2, 2, -2, 2};
+	data->edge->minre = (data->width * ((data->edge->maxim - data->edge->minim) / data->height)) + data->edge->minre;
+
 	data->mlx = mlx_init();
 	data->win =\
 		mlx_new_window(data->mlx, data->width, data->height, "Fractol");
@@ -37,14 +41,14 @@ int	main(void)
 	img->img = mlx_new_image(data->mlx, data->width, data->height);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
-	t_xyab *len = (t_xyab*)malloc(sizeof(t_xyab));
-	len-> x = data->width/2;
-	len-> y = data->height/2;
-	len-> a = 0;
-	len-> b = 0;
-	len-> l = data->height/4;
-	data->len = len;
-	img_pixel_full(img, data, len);
+//	t_xyab *len = (t_xyab*)malloc(sizeof(t_xyab));
+//	len-> x = data->width/2;
+//	len-> y = data->height/2;
+//	len-> a = 0;
+//	len-> b = 0;
+//	len-> l = data->height/4;
+//	data->len = len;
+	img_pixel_full(img, data);
 	data->image = img;
 	mlx_key_hook(data->win, ft_close, data);
 	mlx_loop(data->mlx);

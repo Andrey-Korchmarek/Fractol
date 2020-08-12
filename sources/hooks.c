@@ -16,8 +16,10 @@ int	ft_close(int keycode, t_fr *data)
 
 int		mouse_h(int button, int x, int y, t_fr *data)
 {
-	t_xyab *len;
+//	t_xyab *len;
 
+	(void)x;
+	(void)y;
 	if (button == 4 || button == 5)
 	{
 		if (button == 4)
@@ -26,13 +28,13 @@ int		mouse_h(int button, int x, int y, t_fr *data)
 			data->scale += 10;
 	}
 //	mlx_clear_window(data->mlx, data->win);
-	len = (t_xyab*)malloc(sizeof(t_xyab));
-	len-> x = x;
-	len-> y = y;
-	len-> a = 0;
-	len-> b = 0;
-	len-> l = data->height/4;
-	img_pixel_full(data->image, data, len);
-	free(len);
+//	len = (t_xyab*)malloc(sizeof(t_xyab));
+//	len-> x = x;
+//	len-> y = y;
+//	len-> a = 0;
+//	len-> b = 0;
+//	len-> l = data->height/4;
+//	img_pixel_full(data->image, data);
+//	free(len);
 	return (0);
 }

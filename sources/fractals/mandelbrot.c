@@ -4,7 +4,7 @@ int	m_check(t_member *z)
 {
 	if (ft_abs_f(z->z.r * z->z.r + z->z.i * z->z.i) > 4)
 		return (z->n);
-	return (0xFFFFFF);
+	return (-1);
 }
 
 t_cx m_next(t_cx z, t_cx c)
@@ -17,11 +17,11 @@ int iteration(t_cx c, t_cx (*next)(t_cx, t_cx), int (*check)(t_member*))
 	t_member z_n;
 
 	z_n = (t_member){c, 0};
-	if (check(&z_n) != 0xFFFFFF)
+	if (check(&z_n) != -1)
 		return (z_n.n);
-	while (z_n.n++ < 10000 && check(&z_n) == 0xFFFFFF)
+	while (z_n.n++ < 10000 && check(&z_n) == -1)
 		z_n.z = next(z_n.z, c);
-	return (z_n.n == 10000 ? 0xFFFFFF : z_n.n);
+	return (z_n.n == 10000 ? 0 : 11 * (z_n.n + 1));
 }
 
 t_cx m_new(t_cx c, int n)

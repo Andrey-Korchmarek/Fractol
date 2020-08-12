@@ -126,19 +126,31 @@ typedef struct s_xyab
 	int l;
 }t_xyab;
 
+typedef	struct	s_edge
+{
+	double	minim;
+	double	maxim;
+	double	minre;
+	double	maxre;
+}				t_edge;
+
 //Самая главная
 typedef	struct	s_fr
 {
 	char		choice;
 	int			width;
 	int			height;
-	t_image		*image;
-	void		*mlx;
-	void		*win;
+	int			maxiter;
 	t_pixel		*pix;
+	t_cx		*com;
+	t_image		*image;
 	t_algoritm	*alg;
 	double		scale;
 	t_xyab		*len;
+	t_edge		*edge;
+
+	void		*mlx;
+	void		*win;
 }				t_fr;
 
 //int				fr_main(void);
@@ -156,6 +168,6 @@ int iteration(t_cx c, t_cx (*next)(t_cx, t_cx), int (*check)(t_member*));
 t_cx m_next(t_cx z, t_cx c);
 int				m_check(t_member *z);
 t_cx j_new(t_cx k, t_cx c, int n);
-void	img_pixel_full(t_image *img, t_fr *data, t_xyab *len);
+void	img_pixel_full(t_image *img, t_fr *data);
 
 #endif

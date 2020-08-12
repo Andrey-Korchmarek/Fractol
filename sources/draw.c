@@ -12,10 +12,10 @@ void	img_pixel_put(t_image *data, t_pixel *pix)
 	*(unsigned int*)dst = pix->color;
 }
 
-void	img_pixel_full(t_image *img, t_fr *data, t_xyab *len)
+void	img_pixel_full(t_image *img, t_fr *data)
 {
 	t_pixel pix;
-	t_cx coord;
+//	t_cx coord;
 
 
 	pix.y = 0;
@@ -24,9 +24,7 @@ void	img_pixel_full(t_image *img, t_fr *data, t_xyab *len)
 		pix.x = 0;
 		while (pix.x < data->width)
 		{
-			coord.r = len->a + (pix.x - len->x)/len->l;
-			coord.i = len->b - (pix.y - len->y)/len->l;
-			pix.color = iteration(coord, m_next, m_check);
+			pix.color = iteration(pix_to_coord(pix, data), m_next, m_check);
 			img_pixel_put(img, &pix);
 
 			pix.x++;

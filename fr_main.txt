@@ -61,6 +61,10 @@ static void default(t_tmp *data)
 	int 			mouse_y;
 }
 
+fr->f = create_cmplx((fr->max.re - fr->min.re) / (fr->width - 1),
+ (fr->max.im - fr->min.im) / (fr->height - 1));
+
+
 int fr_main(void)
 {
 	t_vars	vars;
