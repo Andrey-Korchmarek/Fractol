@@ -18,7 +18,8 @@ void	fractal(t_fr *chosen)
 
 	zero = (t_cx){0, 0};
 	if (chosen->choice == 'm')
-		calculate_m(chosen->calc, chosen);
+		ft_abs(7);
+//		calculate_m(chosen->calc, chosen);
 //	else if (chosen->choice == 'j')
 //				*chosen->calc = (t_alg){zero, zero, 0, (t_member){zero, 0},
 //				j_new, j_next, j_iter};
@@ -29,11 +30,3 @@ void	fractal(t_fr *chosen)
 		game_over(2);
 }
 
-int	iteration(t_alg *data, t_cx (*new)(), void (*next)(), int (*iter)())
-{
-	(void)iter;
-	data->z_n = (t_member){new(data->c, 1), 1};
-	while (data->z_n.n < data->maxiter && check(data->z_n.z))
-		next(data->c, &data->z_n);
-	return (data->z_n.n < data->maxiter ? data->z_n.n * 0x010101 : 0x000000);
-}

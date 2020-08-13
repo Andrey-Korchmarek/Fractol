@@ -19,11 +19,27 @@ int	check(t_cx z)
 	return (0);
 }
 
-int	calculate_m(t_alg *alg, t_fr *data)
+int	calculate_m(t_cx c, t_fr *data)
 {
-	(void)data;
-	(void)alg;
+	int		n;
+	t_cx	z;
 
-	return (0x00FF00);
+	n = 1;
+	z = c;
+	while (n < data->maxiter && check(z))
+	{
+		z = cx_sum(cx_square(z), c);
+		n++;
+	}
+	return (n < data->maxiter ? n * 0x010101 : 0);
+}
+
+int	iteration(t_alg *data, t_cx (*new)(), void (*next)(), int (*iter)())
+{
+	(void)iter;
+	data->z_n = get_member(new(data->c, 1), 1);
+	while (data->z_n.n < data->maxiter && check(data->z_n.z))
+		next(data->c, &data->z_n);
+	return (data->z_n.n < data->maxiter ? data->z_n.n * 0x010101 : 0x000000);
 }
 

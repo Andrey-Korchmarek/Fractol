@@ -21,15 +21,16 @@ t_cx	m_new(t_cx c, int n, t_fr *mand)
 		return ((t_cx){0, 0});
 	if (n == 1)
 		return (c);
+
 	z = cx_sum(cx_square(m_new(c, n - 1, mand)), c);
 	return (z);
 }
 
-void	m_next(t_cx c, t_member *z_n)
+t_member	m_next(t_cx c, t_member z_n)
 {
-	z_n->z = cx_sum(cx_square(z_n->z), c);
-	z_n->n++;
-	return ;
+	z_n.z = cx_sum(cx_square(z_n.z), c);
+	z_n.n++;
+	return (z_n);
 }
 
 int	m_iter(void)
