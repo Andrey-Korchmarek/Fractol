@@ -23,9 +23,8 @@ void	img_pixel_put(t_image *data, t_pixel *pix)
 
 void	img_pixel_full(t_image *img, t_fr *data)
 {
-	t_pixel pix;
-	t_cx coord;
-
+	t_pixel	pix;
+	t_cx	coord;
 
 	pix.y = 0;
 	while (pix.y < data->height)
@@ -33,9 +32,9 @@ void	img_pixel_full(t_image *img, t_fr *data)
 		pix.x = 0;
 		while (pix.x < data->width)
 		{
-			//t_alg mand = {'m', 0, pix_to_coord(pix, data), (t_cx){1, 1}, (t_cx){0, 0}, 40404, m_next, m_check};
-			coord = pix_to_coord(&pix, data->edge, data);
-			pix.color = 0xFF0055;
+			coord = pix_to_coord(&pix, data);
+
+			pix.color = calculate_m(data->calc, data);
 			img_pixel_put(img, &pix);
 			pix.x++;
 		}
@@ -52,5 +51,5 @@ void	draw(t_fr *data)
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.llh, &img.endian);
 	img_pixel_full(&img, data);
 	mlx_put_image_to_window(data->mlx, data->win, img.img, 0, 0);
-	return;
+	data->img = &img;
 }

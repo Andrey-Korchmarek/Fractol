@@ -15,18 +15,22 @@
 void	set_default(t_fr *data)
 {
 	t_edge ed;
+	t_cx	zero;
 
-	data->width = 1000;
+	zero = (t_cx){0, 0};
+	data->width = 800;
 	data->height = 800;
-	data->zoom = 1.1;
+		data->maxiter = 100;
+	data->zoom = 150;
+	data->img = NULL;
+	ed = (t_edge){-2.0, 2.0, -2.0, 2.0};
+	ed.maxre = (ed.maxim - ed.minim) * (data->width * 1.0 / data->height) +
+			   ed.minre;
+	data->edge = &ed;
+	*data->calc = (t_alg){zero, zero, 0, (t_member){zero, 0}, data->maxiter};
 	data->mlx = mlx_init();
 	data->win =\
 		mlx_new_window(data->mlx, data->width, data->height, "Fractol");
-	ed = (t_edge){-2, 2, -2, 2};
-	ed.maxre = (ed.maxim - ed.minim) * data->width / data->height + ed.minre;
-	data->edge = &ed;
-
-	return ;
 }
 
 int	main(int argc, char **argv)
@@ -42,6 +46,7 @@ int	main(int argc, char **argv)
 	draw(main);
 
 	mlx_key_hook(main->win, ft_close, main);
+	mlx_mouse_hook(main->win, mouse_h, main);
 	mlx_loop(main->mlx);
 	free(main);
 	return (0);

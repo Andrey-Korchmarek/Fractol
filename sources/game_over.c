@@ -21,7 +21,7 @@ void	game_over(int error)
 				  "\t\t\t\t-m for Mandelbrot\n"
 				  "\t\t\t\t-b for Burningship\n");
 	else if (error == 2)
-		ft_putstr("I cannot read this file.\n");
+		ft_putstr("I don't know what to do :(\n");
 	else if (error == 3)
 		ft_putstr("There are some incomprehensible characters in the file.\n");
 	else if (error == 4)

@@ -1,0 +1,100 @@
+#include <stdlib.h>
+#include "includes/fractol.h"
+
+int	ft_close(int keycode, t_vars *vars)
+{
+	if (keycode == ESC)
+	{
+		mlx_destroy_window(vars->mlx, vars->win);
+		exit(0);
+	}
+	return (0);
+}
+
+int		mouse_h(int button, int x, int y, t_fdf *data) {
+	(void) x;
+	(void) y;
+	if (button == 1 || button == 2) {
+		if (button == 2)
+			data->angle += 0.1;
+		if (button == 1)
+			data->angle -= 0.1;
+	}
+	if (button == 4 || button == 5) {
+		if (button == 4)
+			data->zoom -= 1;
+		if (button == 5)
+			data->zoom += 1;
+	}
+	if (button == 3)
+		new_window(button, data);
+	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+	draw(data);
+	return (0);
+}
+
+void            my_mlx_pixel_put(t_image *data, int x, int y, int color)
+{
+	char    *dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
+
+t_cx pix_to_coord(t_pixel pix, t_tmp *data)
+{
+	t_cx coord;
+
+	coord.r = (pix.x - WIDTH / 2) / data->scale;
+	coord.i = (pix.y - HEIGHT / 2) / data->scale;
+	return (coord);
+}
+
+static void default(t_tmp *data)
+{
+	data->min = cx_new(-2, -2);
+	data->max = cx_new(2, 2);
+	data->pixzoom = 200;
+	data->scale = 150;
+	data->max_iteration = 10000;
+	int 			mouse_x;
+	int 			mouse_y;
+}
+
+fr->f = create_cmplx((fr->max.re - fr->min.re) / (fr->width - 1),
+ (fr->max.im - fr->min.im) / (fr->height - 1));
+
+
+int fr_main(void)
+{
+	t_vars	vars;
+	t_image	img;
+	t_pixel pix;
+	t_tmp 	*data;
+
+	data = (t_tmp*)malloc(sizeof(t_tmp));
+	default(data);
+	vars.mlx = mlx_init();
+	img.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+								 &img.endian);
+	pix.y = 0;
+	while (pix.y < HEIGHT)
+	{
+		pix.x = 0;
+		while (pix.x < WIDTH)
+		{
+			pix.color = 70 * iteration(pix_to_coord(pix, data), m_next, m_check);
+			my_mlx_pixel_put(&img, pix.x, pix.y, pix.color);
+			pix.x++;
+		}
+		pix.y++;
+	}
+
+	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "Hello world!");
+	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
+	mlx_key_hook(vars.win, ft_close, &vars);
+//	mlx_mouse_hook(vars.win, mouse_h, &vars);
+	mlx_loop(vars.mlx);
+	return (0);
+}

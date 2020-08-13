@@ -1,22 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pix_to_coord.c                                     :+:      :+:    :+:   */
+/*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mashley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/12 13:20:58 by mashley           #+#    #+#             */
-/*   Updated: 2020/08/12 13:21:02 by mashley          ###   ########.fr       */
+/*   Created: 2020/08/12 22:18:18 by mashley           #+#    #+#             */
+/*   Updated: 2020/08/12 22:18:21 by mashley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fractol.h"
 
-t_cx	pix_to_coord(t_pixel *pix, t_fr *data)
+t_cx	m_new(t_cx c, int n, t_fr *mand)
 {
-	t_cx	coord;
+	t_cx z;
 
-	coord.r = (pix->x - data->width / 2) / data->zoom;
-	coord.i = (pix->y - data->height / 2) / data->zoom;
-	return (coord);
+	(void )mand;
+	if (n == 0)
+		return ((t_cx){0, 0});
+	if (n == 1)
+		return (c);
+	z = cx_sum(cx_square(m_new(c, n - 1, mand)), c);
+	return (z);
+}
+
+void	m_next(t_cx c, t_member *z_n)
+{
+	z_n->z = cx_sum(cx_square(z_n->z), c);
+	z_n->n++;
+	return ;
+}
+
+int	m_iter(void)
+{
+	return (0);
 }

@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pix_to_coord.c                                     :+:      :+:    :+:   */
+/*   calculate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mashley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/12 13:20:58 by mashley           #+#    #+#             */
-/*   Updated: 2020/08/12 13:21:02 by mashley          ###   ########.fr       */
+/*   Created: 2020/08/12 16:06:44 by mashley           #+#    #+#             */
+/*   Updated: 2020/08/12 16:06:47 by mashley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fractol.h"
 
-t_cx	pix_to_coord(t_pixel *pix, t_fr *data)
+int	check(t_cx z)
 {
-	t_cx	coord;
-
-	coord.r = (pix->x - data->width / 2) / data->zoom;
-	coord.i = (pix->y - data->height / 2) / data->zoom;
-	return (coord);
+	if (z.r * z.r + z.i * z.i <= 4)
+		return (1);
+	return (0);
 }
+
+int	calculate_m(t_alg *alg, t_fr *data)
+{
+	(void)data;
+	(void)alg;
+
+	return (0x00FF00);
+}
+
