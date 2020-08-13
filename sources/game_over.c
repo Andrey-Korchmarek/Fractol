@@ -22,20 +22,6 @@ void	game_over(int error)
 				  "\t\t\t\t-b for Burningship\n");
 	else if (error == 2)
 		ft_putstr("I don't know what to do :(\n");
-	else if (error == 3)
-		ft_putstr("There are some incomprehensible characters in the file.\n");
-	else if (error == 4)
-		ft_putstr("All lines must be the same width.\n");
-	else if (error == 5)
-		ft_putstr("The file must have the extension .fdf\n");
-	else if (error == 32)
-		ft_putstr("!\n");
-	else if (error == 32)
-		ft_putstr("!");
-	else if (error == 32)
-		ft_putstr("!");
-	else if (error == 32)
-		ft_putstr("!");
 	else if (error == 32)
 		ft_putstr("!");
 	else

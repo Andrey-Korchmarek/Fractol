@@ -12,28 +12,17 @@
 
 #include "includes/fractol.h"
 
-t_cx	m_new(t_cx c, int n, t_fr *mand)
+int	mandelbrot(t_cx c, t_fr *data)
 {
-	t_cx z;
+	int		n;
+	t_cx	z;
 
-	(void )mand;
-	if (n == 0)
-		return ((t_cx){0, 0});
-	if (n == 1)
-		return (c);
-
-	z = cx_sum(cx_square(m_new(c, n - 1, mand)), c);
-	return (z);
-}
-
-t_member	m_next(t_cx c, t_member z_n)
-{
-	z_n.z = cx_sum(cx_square(z_n.z), c);
-	z_n.n++;
-	return (z_n);
-}
-
-int	m_iter(void)
-{
-	return (0);
+	n = 1;
+	z = c;
+	while (n < data->maxiter && check(z))
+	{
+		z = cx_sum(cx_square(z), c);
+		n++;
+	}
+	return (n < data->maxiter ? n * 0x010101 : 0);
 }

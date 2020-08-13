@@ -32,7 +32,7 @@ void	img_pixel_full(t_image *img, t_fr *data)
 		pix.x = 0;
 		while (pix.x < data->width)
 		{
-			pix.color = calculate_m(pix_to_coord(&pix, data), data);
+			pix.color = calculate(pix_to_coord(&pix, data), data);
 			img_pixel_put(img, &pix);
 			pix.x++;
 		}

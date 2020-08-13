@@ -27,7 +27,6 @@ void	set_default(t_fr *data)
 	ed.maxre = (ed.maxim - ed.minim) * (data->width * 1.0 / data->height) +
 			   ed.minre;
 	data->edge = &ed;
-	data->calc = &(t_alg){zero, zero, 0, (t_member){zero, 0}, data->maxiter};
 	data->mlx = mlx_init();
 	data->win =\
 		mlx_new_window(data->mlx, data->width, data->height, "Fractol");
@@ -38,8 +37,6 @@ int	main(int argc, char **argv)
 	t_fr	*main;
 
 	main = (t_fr*)malloc(sizeof(t_fr));
-	main->calc = (t_alg*)malloc(sizeof(t_alg));
-	main->edge = (t_edge*)malloc(sizeof(t_edge));
 	if (argc != 2)
 		game_over(1);
 	if (argc == 2)

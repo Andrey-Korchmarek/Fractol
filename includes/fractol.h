@@ -76,12 +76,13 @@ void		img_pixel_put(t_image *data, t_pixel *pix);
 t_cx		cx_square(t_cx c);
 t_cx		cx_sum(t_cx c1, t_cx c2);
 t_cx		cx_new(double re, double im);
-t_member	get_member(t_cx c, int n);
 t_cx		pix_to_coord(t_pixel *pix, t_fr *data);
-int			calculate_m(t_cx c, t_fr *data);
+int			calculate(t_cx c, t_fr *data);
+int			mandelbrot(t_cx c, t_fr *data);
+int			julia(t_cx c, t_fr *data);
+int			burningship(t_cx c, t_fr *data);
 t_cx		m_new(t_cx c, int n, t_fr *mand);
-t_member	m_next(t_cx c, t_member z_n);
 int			m_iter(void);
 int			check(t_cx z);
-int			iteration(t_alg *data, t_cx (*new)(), void (*next)(), int (*iter)());
+
 #endif
