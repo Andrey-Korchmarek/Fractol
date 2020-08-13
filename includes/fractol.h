@@ -82,5 +82,6 @@ int				mandelbrot(t_cx c, t_fr *data);
 int				julia(t_cx c, t_fr *data);
 int				burningship(t_cx c, t_fr *data);
 int				check(t_cx z);
+int				mouse_move(int x, int y, t_fr *data);
 
 #endif

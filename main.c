@@ -18,8 +18,8 @@ void	set_default(t_fr *data)
 	t_cx	zero;
 
 	zero = (t_cx){0, 0};
-	data->width = 800;
-	data->height = 800;
+	data->width = 1200;
+	data->height = 1300;
 	data->maxiter = 100;
 	data->zoom = 150;
 	data->img = NULL;
@@ -45,6 +45,7 @@ int		main(int argc, char **argv)
 	draw(main);
 	mlx_key_hook(main->win, ft_close, main);
 	mlx_mouse_hook(main->win, mouse_h, main);
+	mlx_hook(main->win, 6, 0, mouse_move, main);
 	mlx_loop(main->mlx);
 	free(main);
 	return (0);
