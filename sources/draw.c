@@ -18,13 +18,11 @@ void	img_pixel_put(t_image *data, t_pixel *pix)
 
 	dst = data->addr + (pix->y * data->llh + pix->x * (data->bpp / 8));
 	*(unsigned int*)dst = pix->color;
-
 }
 
 void	img_pixel_full(t_image *img, t_fr *data)
 {
 	t_pixel	pix;
-	(void)img;
 
 	pix.y = 0;
 	while (pix.y < data->height)
@@ -38,7 +36,6 @@ void	img_pixel_full(t_image *img, t_fr *data)
 		}
 		pix.y++;
 	}
-
 }
 
 void	draw(t_fr *data)

@@ -18,9 +18,9 @@
 # include "libft/includes/libft.h"
 # include "../minilibx_macos/mlx.h"
 
-# define ESC	53
-# define MOUSE_UP_SCRLL	0x04
-# define MOUSE_DOWN_SCRLL	0x05
+# define ESC 53
+# define MOUSE_UP_SCRLL 0x04
+# define MOUSE_DOWN_SCRLL 0x05
 
 typedef	struct	s_image
 {
@@ -33,56 +33,56 @@ typedef	struct	s_image
 
 typedef	struct	s_pixel
 {
-	int	x;
-	int	y;
-	int	color;
+	int			x;
+	int			y;
+	int			color;
 }				t_pixel;
 
-typedef struct			s_cx
+typedef struct	s_cx
 {
 	double		r;
 	double		i;
-}						t_cx;
+}				t_cx;
 
 typedef	struct	s_edge
 {
-	double	minim;
-	double	maxim;
-	double	minre;
-	double	maxre;
+	double		minim;
+	double		maxim;
+	double		minre;
+	double		maxre;
 }				t_edge;
 
 typedef	struct	s_fr
 {
-	char	choice;
-	int		width;
-	int		height;
-	int		maxiter;
-	double	zoom;
-	t_cx	c;
-	t_cx	k;
-	t_image	*img;
-	t_edge	*edge;
+	char		choice;
+	int			width;
+	int			height;
+	int			maxiter;
+	double		zoom;
+	t_cx		c;
+	t_cx		k;
+	t_image		*img;
+	t_edge		*edge;
 
-	void	*mlx;
-	void	*win;
+	void		*mlx;
+	void		*win;
 }				t_fr;
 
-void		game_over(int error);
-int			ft_close(int keycode, t_fr *data);
-int			mouse_h(int button, int x, int y, t_fr *data);
-void		draw(t_fr *data);
-void		img_pixel_put(t_image *data, t_pixel *pix);
-t_cx		cx_square(t_cx c);
-t_cx		cx_sum(t_cx c1, t_cx c2);
-t_cx		cx_new(double re, double im);
-t_cx		pix_to_coord(t_pixel *pix, t_fr *data);
-int			calculate(t_cx c, t_fr *data);
-int			mandelbrot(t_cx c, t_fr *data);
-int			julia(t_cx c, t_fr *data);
-int			burningship(t_cx c, t_fr *data);
-t_cx		m_new(t_cx c, int n, t_fr *mand);
-int			m_iter(void);
-int			check(t_cx z);
+void			game_over(int error);
+int				ft_close(int keycode, t_fr *data);
+int				mouse_h(int button, int x, int y, t_fr *data);
+void			draw(t_fr *data);
+void			img_pixel_put(t_image *data, t_pixel *pix);
+t_cx			cx_square(t_cx c);
+t_cx			cx_sum(t_cx c1, t_cx c2);
+t_cx			cx_new(double re, double im);
+t_cx			pix_to_coord(t_pixel *pix, t_fr *data);
+int				calculate(t_cx c, t_fr *data);
+int				mandelbrot(t_cx c, t_fr *data);
+int				julia(t_cx c, t_fr *data);
+int				burningship(t_cx c, t_fr *data);
+t_cx			m_new(t_cx c, int n, t_fr *mand);
+int				m_iter(void);
+int				check(t_cx z);
 
 #endif

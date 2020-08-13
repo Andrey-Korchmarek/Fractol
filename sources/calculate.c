@@ -22,11 +22,11 @@ int	check(t_cx z)
 int	calculate(t_cx c, t_fr *data)
 {
 	if (data->choice == 'm')
-		return (mandelbrot(c, data));
+		return (mandelbrot(c, data) * 0x00FF00);
 	else if (data->choice == 'j')
-		return (julia(c, data));
+		return (julia(c, data) * 0x00FF00);
 	else if (data->choice == 'b')
-		return (burningship(c, data));
+		return (burningship(c, data) * 0x00FF00);
 	else
 		game_over(2);
 	return (0);

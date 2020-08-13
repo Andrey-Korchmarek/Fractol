@@ -1,6 +1,14 @@
-//
-// Created by Mari Ashley on 8/13/20.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   burningship.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mashley <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/13 07:41:22 by mashley           #+#    #+#             */
+/*   Updated: 2020/08/13 07:41:25 by mashley          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "includes/fractol.h"
 
@@ -16,5 +24,5 @@ int	burningship(t_cx c, t_fr *data)
 		z = cx_sum(cx_square(cx_new(ft_abs_f(z.r), ft_abs_f(z.i))), c);
 		n++;
 	}
-	return (n < data->maxiter ? n * 0x015501 : 0);
+	return (n < data->maxiter ? n : 0);
 }

@@ -1,6 +1,14 @@
-//
-// Created by Mari Ashley on 8/10/20.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   complex.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mashley <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/13 07:41:50 by mashley           #+#    #+#             */
+/*   Updated: 2020/08/13 07:41:53 by mashley          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "includes/fractol.h"
 
@@ -25,7 +33,7 @@ t_cx	cx_sum(t_cx c1, t_cx c2)
 	return (result);
 }
 
-t_cx		cx_new(double re, double im)
+t_cx	cx_new(double re, double im)
 {
 	return ((t_cx){re, im});
 }
