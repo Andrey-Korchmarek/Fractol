@@ -18,10 +18,12 @@ void	set_default(t_fr *data)
 	t_cx	zero;
 
 	zero = (t_cx){0, 0};
-	data->width = 1200;
-	data->height = 1300;
+	data->width = 500;
+	data->height = 500;
 	data->maxiter = 100;
 	data->zoom = 150;
+	data->m_x = 0;
+	data->m_y = 0;
 	data->img = NULL;
 	ed = (t_edge){-2.0, 2.0, -2.0, 2.0};
 	ed.maxre = (ed.maxim - ed.minim) * (data->width * 1.0 / data->height) +

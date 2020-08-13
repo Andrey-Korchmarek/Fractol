@@ -59,6 +59,8 @@ typedef	struct	s_fr
 	int			height;
 	int			maxiter;
 	double		zoom;
+	double		m_x;
+	double		m_y;
 	t_cx		c;
 	t_cx		k;
 	t_image		*img;

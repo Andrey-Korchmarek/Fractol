@@ -29,9 +29,21 @@ int		mouse_h(int button, int x, int y, t_fr *data)
 	if (button == MOUSE_UP_SCRLL || button == MOUSE_DOWN_SCRLL)
 	{
 		if (button == MOUSE_UP_SCRLL)
-			data->zoom += 20;
+		{
+			data->zoom *= 1.1;
+			data->m_x += ((x - data->width / 2) / data->zoom + data->m_x) -
+					((x - data->width / 2) / (data->zoom * 1.1) + data->m_x);
+			data->m_y += ((y - data->height / 2) / data->zoom + data->m_y) -
+					((y - data->height / 2) / (data->zoom * 1.1) + data->m_y);
+		}
 		if (button == MOUSE_DOWN_SCRLL)
-			data->zoom -= 20;
+		{
+			data->zoom /= 1.1;
+			data->m_x += ((x - data->width / 2) / data->zoom + data->m_x) -
+					((x - data->width / 2) / (data->zoom / 1.1) + data->m_x);
+			data->m_y += ((y - data->height / 2) / data->zoom + data->m_y) -
+					((y - data->height / 2) / (data->zoom / 1.1) + data->m_y);
+		}
 	}
 	mlx_clear_window(data->mlx, data->win);
 	draw(data);
