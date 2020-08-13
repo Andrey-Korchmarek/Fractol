@@ -81,8 +81,6 @@ int				calculate(t_cx c, t_fr *data);
 int				mandelbrot(t_cx c, t_fr *data);
 int				julia(t_cx c, t_fr *data);
 int				burningship(t_cx c, t_fr *data);
-t_cx			m_new(t_cx c, int n, t_fr *mand);
-int				m_iter(void);
 int				check(t_cx z);
 
 #endif
