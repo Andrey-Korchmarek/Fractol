@@ -40,7 +40,7 @@ int		main(int argc, char **argv)
 	if (argc != 2)
 		game_over(1);
 	if (argc == 2)
-		main->choice = argv[1][1];
+		main->choice = argv[1][0];
 	set_default(main);
 	draw(main);
 	mlx_key_hook(main->win, ft_close, main);

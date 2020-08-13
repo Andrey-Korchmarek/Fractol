@@ -17,9 +17,9 @@ void	game_over(int error)
 	if (error == 0)
 		ft_putstr("Error!!\n");
 	else if (error == 1)
-		ft_putstr("usage: fractol  -j for Julia\n"
-					"\t\t\t\t-m for Mandelbrot\n"
-					"\t\t\t\t-b for Burningship\n");
+		ft_putstr("usage: fractol j for Julia\n"
+					"\t\t\t\tm for Mandelbrot\n"
+					"\t\t\t\tb for Burningship\n");
 	else if (error == 2)
 		ft_putstr("I don't know what to do :(\n");
 	else if (error == 32)
