@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fractol.h"
+#include "fractol.h"
 
 t_cx	cx_square(t_cx c)
 {

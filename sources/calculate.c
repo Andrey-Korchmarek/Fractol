@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fractol.h"
+#include "fractol.h"
 
 int	check(t_cx z)
 {
@@ -22,11 +22,11 @@ int	check(t_cx z)
 int	calculate(t_cx c, t_fr *data)
 {
 	if (data->choice == 'm')
-		return (mandelbrot(c, data) * 0x00FF00);
+		return (mandelbrot(c, data));
 	else if (data->choice == 'j')
-		return (julia(c, data) * 0x00FF00);
+		return (julia(c, data));
 	else if (data->choice == 'b')
-		return (burningship(c, data) * 0x00FF00);
+		return (burningship(c, data));
 	else
 		game_over(2);
 	return (0);

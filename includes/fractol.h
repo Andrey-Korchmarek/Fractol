@@ -15,12 +15,15 @@
 
 # include <stdio.h>
 # include <math.h>
-# include "libft/includes/libft.h"
+# include "libft.h"
 # include "../minilibx_macos/mlx.h"
 
 # define ESC 53
+# define KEY_Z 6
+# define KEY_X 7
 # define MOUSE_UP_SCRLL 0x04
 # define MOUSE_DOWN_SCRLL 0x05
+# define COLOR 0x654321
 
 typedef	struct	s_image
 {
@@ -58,6 +61,7 @@ typedef	struct	s_fr
 	int			width;
 	int			height;
 	int			maxiter;
+	int			step;
 	double		zoom;
 	double		m_x;
 	double		m_y;
@@ -85,5 +89,6 @@ int				julia(t_cx c, t_fr *data);
 int				burningship(t_cx c, t_fr *data);
 int				check(t_cx z);
 int				mouse_move(int x, int y, t_fr *data);
+void			iter_change(char key, t_fr *data);
 
 #endif

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fractol.h"
+#include "fractol.h"
 
 int	burningship(t_cx c, t_fr *data)
 {

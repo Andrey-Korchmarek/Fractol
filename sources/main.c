@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fractol.h"
+#include "fractol.h"
 
 void	set_default(t_fr *data)
 {
@@ -21,6 +21,7 @@ void	set_default(t_fr *data)
 	data->width = 500;
 	data->height = 500;
 	data->maxiter = 100;
+	data->step = 25;
 	data->zoom = 150;
 	data->m_x = 0;
 	data->m_y = 0;

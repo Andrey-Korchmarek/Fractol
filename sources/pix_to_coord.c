@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fractol.h"
+#include "fractol.h"
 
 t_cx	pix_to_coord(t_pixel *pix, t_fr *data)
 {

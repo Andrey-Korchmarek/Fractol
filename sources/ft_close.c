@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fractol.h"
+#include "fractol.h"
 
 int		ft_close(int keycode, t_fr *data)
 {
@@ -19,6 +19,10 @@ int		ft_close(int keycode, t_fr *data)
 		mlx_destroy_window(data->mlx, data->win);
 		exit(0);
 	}
+	if (keycode == KEY_Z)
+		iter_change('p', data);
+	if (keycode == KEY_X)
+		iter_change('m', data);
 	return (0);
 }
 
@@ -56,4 +60,15 @@ int		mouse_move(int x, int y, t_fr *data)
 	mlx_clear_window(data->mlx, data->win);
 	draw(data);
 	return (0);
+}
+
+void	iter_change(char key, t_fr *data)
+{
+	if (data->maxiter < 10 || data->maxiter > 10000)
+		return ;
+	if (key == 'p')
+		data->maxiter += data->step;
+	if (key == 'm')
+		data->maxiter -= data->step;
+	return ;
 }
